@@ -49,13 +49,23 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
     // Composable by default doesn't hold a value, thus result would be reset every time it gets called
     // to avoid this we used the "remember" composable. It stores an object in the memory.
     // the composable requires to be given a function, thus the mutableStateOf()
+
+    val imageResource = when (result){
+        1 -> R.drawable.dice_1
+        2 -> R.drawable.dice_2
+        3 -> R.drawable.dice_3
+        4 -> R.drawable.dice_4
+        5 -> R.drawable.dice_5
+        else -> R.drawable.dice_6
+    }
+
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         Image(
-            painter = painterResource(R.drawable.dice_1),
-            contentDescription = "1"
+            painter = painterResource(imageResource),
+            contentDescription = result.toString()
         )
 
         Spacer(modifier = Modifier.height(16.dp))
